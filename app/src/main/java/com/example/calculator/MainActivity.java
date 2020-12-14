@@ -1,5 +1,7 @@
 package com.example.calculator;
 
+package com.crazy.scalc;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,9 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bac,bc,bp,bsqrt,bplus,bminus,bdiv,bmod,bequal,bdot,bbrac1,bbrac2,bsin,bcos,btan,bsquare,bpi,bfact,blog,bln,binv;
+    Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdot,bpi,bequal,bplus,bmin,bmul,bdiv,binv,bsqrt,bsquare,bfact,bln,blog,btan,bcos,bsin,bb1,bb2,bc,bac;
     TextView tvmain,tvsec;
-    int sum = 0;
     String pi = "3.14159265";
 
     @Override
@@ -29,26 +30,26 @@ public class MainActivity extends AppCompatActivity {
         b8 = findViewById(R.id.b8);
         b9 = findViewById(R.id.b9);
         b0 = findViewById(R.id.b0);
-        bac = findViewById(R.id.bac);
-        bc = findViewById(R.id.bc);
-        bplus = findViewById(R.id.bplus);
-        bminus = findViewById(R.id.bminus);
-        bdiv = findViewById(R.id.bdiv);
-        bmod = findViewById(R.id.bmod);
-        bequal = findViewById(R.id.bequal);
+        bpi = findViewById(R.id.bpi);
         bdot = findViewById(R.id.bdot);
+        bequal = findViewById(R.id.bequal);
+        bplus = findViewById(R.id.bplus);
+        bmin = findViewById(R.id.bmin);
+        bmul = findViewById(R.id.bmul);
+        bdiv = findViewById(R.id.bdiv);
+        binv = findViewById(R.id.binv);
         bsqrt = findViewById(R.id.bsqrt);
-        bfact = findViewById(R.id.bfact);
         bsquare = findViewById(R.id.bsquare);
+        bfact = findViewById(R.id.bfact);
+        bln = findViewById(R.id.bln);
+        blog = findViewById(R.id.blog);
+        btan = findViewById(R.id.btan);
         bsin = findViewById(R.id.bsin);
         bcos = findViewById(R.id.bcos);
-        btan = findViewById(R.id.btan);
-        bpi = findViewById(R.id.bpi);
-        bbrac1 = findViewById(R.id.bbrac1);
-        bbrac2 = findViewById(R.id.bbrac2);
-        blog = findViewById(R.id.blog);
-        bln = findViewById(R.id.bln);
-        binv = findViewById(R.id.binv);
+        bb1 = findViewById(R.id.bb1);
+        bb2 = findViewById(R.id.bb2);
+        bc = findViewById(R.id.bc);
+        bac = findViewById(R.id.bac);
 
         tvmain = findViewById(R.id.tvmain);
         tvsec = findViewById(R.id.tvsec);
@@ -57,172 +58,160 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b1.getText().toString());
+                tvmain.setText(tvmain.getText()+"1");
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b2.getText().toString());
+                tvmain.setText(tvmain.getText()+"2");
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b3.getText().toString());
+                tvmain.setText(tvmain.getText()+"3");
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b4.getText().toString());
+                tvmain.setText(tvmain.getText()+"4");
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b5.getText().toString());
+                tvmain.setText(tvmain.getText()+"5");
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b6.getText().toString());
+                tvmain.setText(tvmain.getText()+"6");
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b7.getText().toString());
+                tvmain.setText(tvmain.getText()+"7");
             }
         });
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b8.getText().toString());
+                tvmain.setText(tvmain.getText()+"8");
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b9.getText().toString());
+                tvmain.setText(tvmain.getText()+"9");
             }
         });
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                tvmain.setText(val+b0.getText().toString());
+                tvmain.setText(tvmain.getText()+"0");
             }
         });
         bdot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String val = tvmain.getText().toString();
-                if (!val.contains("."))
-                {
-                    tvmain.setText(val+bdot.getText().toString());
+                int n =0;
+                try {
+                    if (val.contains("."))
+                    {
+                        Toast.makeText(MainActivity.this,"not valid", Toast.LENGTH_SHORT).show();
+                    }
+//                    else if (val.contains(".") || val.contains("+") || val.contains("-") || val.contains("x") || val.contains("÷"))
+//                    {
+//                        tvmain.setText(tvmain.getText()+".");
+//                    }
+                    else
+                    {
+                        tvmain.setText(tvmain.getText()+".");
+                    }
                 }
-            }
-        });
-        bplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                if (!val.equals(""))
-                {
-                    tvmain.setText(val+bplus.getText().toString());
+                catch (NumberFormatException e){
+                    Toast.makeText(MainActivity.this,"not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        bdiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                if (!val.equals(""))
-                {
-                    tvmain.setText(val+bdiv.getText().toString());
-                }
-            }
-        });
-        bminus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                char last = val.charAt(val.length() -1);
-                if (last!='-')
-                {
-                    tvmain.setText(val+bminus.getText().toString());
-                }
-            }
-        });
-        bmod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                char last = val.charAt(val.length() -1);
-                if (!val.equals(""))
-                {
-                    tvmain.setText(val+bmod.getText().toString());
-                }
-            }
-        });
-        bsqrt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                double r = Math.sqrt(Double.parseDouble(val));
-                String result = String.valueOf(r);
-                tvmain.setText(result);
-            }
-        });
-        bequal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String val = tvmain.getText().toString();
-                String replacedString = val.replace('÷','/').replace('×', '*');
-                double result = eval(replacedString);
-                String r = String.valueOf(result);
-                tvmain.setText(r);
-                tvsec.setText(val);
             }
         });
         bac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvmain.setText("");
-                tvsec.setText("");
+                String val = tvmain.getText().toString();
+                if (val.length() > 0){
+                    tvmain.setText("");
+                    tvsec.setText("");
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"nothing to clear", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         bc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String val = tvmain.getText().toString();
-                if (!val.equals(""))
-                {
+                if (val.length() > 0){
                     val = val.substring(0, val.length() - 1);
                     tvmain.setText(val);
                 }
-
+                else{
+                    Toast.makeText(MainActivity.this,"nothing to clear", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-        bbrac1.setOnClickListener(new View.OnClickListener() {
+        bplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText()+"+");
+            }
+        });
+        bmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText()+"-");
+            }
+        });
+        bmul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText()+"×");
+            }
+        });
+        bdiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText()+"÷");
+            }
+        });
+        bsqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String val = tvmain.getText().toString();
+                    if (val.length() > 0){
+                        double r = Math.sqrt(Double.parseDouble(val));
+                        tvmain.setText(String.valueOf(r));
+                    }
+                }
+                catch (NumberFormatException e)
+                {
+                    Toast.makeText(MainActivity.this,"not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        bb1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvmain.setText(tvmain.getText()+"(");
             }
         });
-        bbrac2.setOnClickListener(new View.OnClickListener() {
+        bb2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvmain.setText(tvmain.getText()+")");
@@ -231,82 +220,105 @@ public class MainActivity extends AppCompatActivity {
         bpi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvmain.setText(tvmain.getText()+pi);
                 tvsec.setText(bpi.getText());
-                //hold
+                tvmain.setText(tvmain.getText()+pi);
             }
         });
         bsin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvmain.setText(tvmain.getText()+"sin");
-                //hold
             }
         });
         bcos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvmain.setText(tvmain.getText()+"cos");
-                //hold
             }
         });
         btan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tvmain.setText(tvmain.getText()+"tan");
-                //hold
-            }
-        });
-        bsquare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double d = Double.parseDouble(tvmain.getText().toString());
-                double square = d*d;
-                tvmain.setText(String.valueOf(square));
-                tvsec.setText(d+"²");
-            }
-        });
-        bfact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int val = Integer.parseInt(tvmain.getText().toString());
-                int fact = factorial(val);
-                tvmain.setText(String.valueOf(fact));
-                tvsec.setText(val+"!");
             }
         });
         binv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvmain.setText(tvmain.getText().toString()+"^"+"(-1)");
+                tvmain.setText(tvmain.getText()+"^"+"(-1)");
+            }
+        });
+        bfact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    int val = Integer.parseInt(tvmain.getText().toString());
+                    int fact = factorial(val);
+                    tvmain.setText(String.valueOf(fact));
+                    tvsec.setText(val+"!");
+                }
+                catch (NumberFormatException e){
+                    Toast.makeText(MainActivity.this,"not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        bsquare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    double d = Double.parseDouble(tvmain.getText().toString());
+                    double square = d*d;
+                    tvmain.setText(String.valueOf(square));
+                    tvsec.setText(d+"²");
+                }
+                catch (NumberFormatException e){
+                    Toast.makeText(MainActivity.this,"not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         bln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvmain.setText(tvmain.getText().toString()+"ln");
+                try {
+                    tvmain.setText(tvmain.getText()+"ln");
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(MainActivity.this, "not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         blog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvmain.setText(tvmain.getText().toString()+"log");
+                try {
+                    tvmain.setText(tvmain.getText()+"log");
+                }
+                catch (NumberFormatException e){
+                    Toast.makeText(MainActivity.this, "not valid"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+        bequal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String val = tvmain.getText().toString();
+                String replacedstr = val.replace('÷','/').replace('×','*');
+                double result = eval(replacedstr);
+                tvmain.setText(String.valueOf(result));
+                tvsec.setText(val);
+            }
+        });
+
     }
 
-
-    //factorial
+    //factorial function
     int factorial(int n)
     {
-
-        // find factorial
-        return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
-
+        return (n==1 || n==0) ? 1 : n*factorial(n-1);
     }
 
-    //evaluation
 
+    //eval function
     public static double eval(final String str) {
         return new Object() {
             int pos = -1, ch;
